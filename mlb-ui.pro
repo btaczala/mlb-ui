@@ -23,4 +23,5 @@ qtcAddDeployment()
 
 OTHER_FILES += \
     qml/mlb-ui/Splashscreen.qml \
-    qml/mlb-ui/ApplicationsList.qml
+    qml/mlb-ui/ApplicationsList.qml \
+    qml/mlb-ui/dummydata/articlesModel.qml
