@@ -3,9 +3,9 @@ import QtQuick 2.0
 Item {
     id: rootMenuItem
     property int maxWidth: 100
+    property alias hideAfter: hideTimer.interval
     width: 100
     height: 62
-//    color: "black"
     state: "menuHidden"
 
     signal appClicked(string appName)
@@ -45,6 +45,9 @@ Item {
                     onClicked: {
                         console.debug("Clicked" + appName)
                         appClicked("apps/"+appName.toLowerCase()+".qml")
+                        if ( hideTimer.running === true) {
+//                            hideTimer.restart();
+                        }
                     }
                 }
             }
@@ -60,25 +63,37 @@ Item {
                 onClicked: {
                     if (rootMenuItem.state==="menuShown" ) {
                         rootMenuItem.state="menuHidden";
+//                        hideTimer.stop();
                     } else {
                         rootMenuItem.state="menuShown";
+//                        hideTimer.start();
                     }
                 }
             }
         }
     }
 
+    Timer {
+        id: hideTimer
+        running: false
+        onTriggered: {
+            rootMenuItem.state = "menuHidden";
+        }
+    }
+
+    Behavior on width {
+        PropertyAnimation {}
+    }
+
     states: [
         State {
             name: "menuShown"
             PropertyChanges { target: rootMenuItem; width: maxWidth}
-            PropertyChanges { target: applicationListView; visible: true}
             PropertyChanges { target: arrowImage; opacity: 1}
         },
         State {
             name: "menuHidden"
             PropertyChanges { target: rootMenuItem; width: 20}
-            PropertyChanges { target: applicationListView; visible: false}
             PropertyChanges { target: arrowImage; opacity: 0.3}
         }
     ]

@@ -9,7 +9,6 @@ Rectangle {
     function switchView(appName) {
         console.debug("loading application " + appName)
         appLoader.source = appName;
-
     }
 
     function lastView() {
@@ -28,6 +27,7 @@ Rectangle {
             id: appLoader
             anchors.fill: parent
         }
+        Behavior on width { PropertyAnimation {} }
     }
 
     // if orientation is vertical
@@ -36,6 +36,7 @@ Rectangle {
         id: menuPanelItem
         maxWidth: mainItem.width/4
         height: parent.height
+        hideAfter: 3000
 
         onAppClicked: {
             switchView(appName)
@@ -49,7 +50,6 @@ Rectangle {
             } else {
                 mainContainer.width = mainItem.width - menuPanelItem.maxWidth;
             }
-
         }
     }
 }

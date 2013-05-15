@@ -10,9 +10,10 @@ QML_IMPORT_PATH =
 # lines and add the respective components to the MOBILITY variable.
 # CONFIG += mobility
 # MOBILITY +=
-
+QMAKE_CXXFLAGS += -std=c++11
 # The .cpp file which was generated for your project. Feel free to hack it.
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    articleitem.cpp
 
 # Installation path
 # target.path =
@@ -25,3 +26,6 @@ OTHER_FILES += \
     qml/mlb-ui/Splashscreen.qml \
     qml/mlb-ui/ApplicationsList.qml \
     qml/mlb-ui/dummydata/articlesModel.qml
+
+HEADERS += \
+    articleitem.h

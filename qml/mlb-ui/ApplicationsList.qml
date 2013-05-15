@@ -9,23 +9,23 @@ ListModel {
         appName: "Players"
     }
 
-    ListElement {
-        appName: "Schedule"
-    }
+//    ListElement {
+//        appName: "Schedule"
+//    }
 
-    ListElement {
-        appName: "Settings"
-    }
+//    ListElement {
+//        appName: "Settings"
+//    }
 
-    ListElement {
-        appName: "Teams"
-    }
+//    ListElement {
+//        appName: "Teams"
+//    }
 
-    ListElement {
-        appName: "Scores"
-    }
+//    ListElement {
+//        appName: "Scores"
+//    }
 
-    ListElement {
-        appName: "Standings"
-    }
+//    ListElement {
+//        appName: "Standings"
+//    }
 }
