@@ -2,8 +2,8 @@ import QtQuick 2.0
 
 Rectangle {
     id: mainItem
-    width: 360
-    height: 360
+    width: 640
+    height: 1280
     color: "grey"
 
     function switchView(appName) {

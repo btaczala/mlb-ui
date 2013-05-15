@@ -15,14 +15,13 @@ Item {
             anchors.fill: parent
             onClicked: articleSelected()
         }
-    }
+        Text {
+            id: textItem
+            text: "Lorem ipsum dolorosa"
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
 
-    Text {
-        id: textItem
-        text: "Lorem ipsum dolorosa"
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.horizontalCenter: parent.horizontalCenter
-
+        }
     }
 }
 
