@@ -7,20 +7,33 @@ Item {
 
     signal articleSelected()
 
-    Rectangle {
+    Item {
         anchors.fill: parent
-        radius: 5
-        color: "green"
+
         MouseArea {
             anchors.fill: parent
             onClicked: articleSelected()
         }
-        Text {
-            id: textItem
-            text: "Lorem ipsum dolorosa"
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.horizontalCenter: parent.horizontalCenter
-
+        Column {
+            anchors.fill: parent
+            Rectangle {
+                color: "white"
+                width: parent.width
+                height: 1
+            }
+            Text {
+                id: textItem
+                text: "Lorem ipsum dolorosa"
+                width: parent.width
+                height: parent.height-2
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
+            Rectangle {
+                color: "white"
+                width: parent.width
+                height: 1
+            }
         }
     }
 }

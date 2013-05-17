@@ -2,11 +2,8 @@ import QtQuick 2.0
 
 Item {
     id: rootMenuItem
-    property int maxWidth: 100
-    property alias hideAfter: hideTimer.interval
     width: 100
     height: 62
-    state: "menuHidden"
 
     signal appClicked(string appName)
 
@@ -17,7 +14,7 @@ Item {
             id: applicationListView
             model: ApplicationsList {}
             spacing: 10
-            width: parent.width - 16
+            width: parent.width
             height: parent.height
             delegate: Rectangle {
                 width: applicationListView.width
@@ -29,15 +26,21 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                     Column{
                         anchors.fill: parent
-
                         Image {
-                            width: 32
-                            height: 32
+                            width: {
+                                if ( parent.width > 0 )
+                                    return 32;
+                                else
+                                    return 0;
+                            }
+                            height:  {
+                                if ( parent.width > 0 )
+                                    return 32;
+                                else
+                                    return 0;
+                            }
+                            smooth: true
                             source: "resources/"+appName.toLowerCase() +".png"
-                            anchors.horizontalCenter: parent.horizontalCenter
-                        }
-                        Text {
-                            text:appName
                             anchors.horizontalCenter: parent.horizontalCenter
                         }
                     }
@@ -45,39 +48,9 @@ Item {
                     onClicked: {
                         console.debug("Clicked" + appName)
                         appClicked("apps/"+appName.toLowerCase()+".qml")
-                        if ( hideTimer.running === true) {
-//                            hideTimer.restart();
-                        }
                     }
                 }
             }
-        }
-        Image {
-            id: arrowImage
-            source: "resources/arrow.svg"
-            width: 32
-            height: 32
-            anchors.verticalCenter: parent.verticalCenter
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    if (rootMenuItem.state==="menuShown" ) {
-                        rootMenuItem.state="menuHidden";
-//                        hideTimer.stop();
-                    } else {
-                        rootMenuItem.state="menuShown";
-//                        hideTimer.start();
-                    }
-                }
-            }
-        }
-    }
-
-    Timer {
-        id: hideTimer
-        running: false
-        onTriggered: {
-            rootMenuItem.state = "menuHidden";
         }
     }
 
@@ -85,16 +58,4 @@ Item {
         PropertyAnimation {}
     }
 
-    states: [
-        State {
-            name: "menuShown"
-            PropertyChanges { target: rootMenuItem; width: maxWidth}
-            PropertyChanges { target: arrowImage; opacity: 1}
-        },
-        State {
-            name: "menuHidden"
-            PropertyChanges { target: rootMenuItem; width: 20}
-            PropertyChanges { target: arrowImage; opacity: 0.3}
-        }
-    ]
 }

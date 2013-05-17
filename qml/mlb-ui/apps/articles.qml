@@ -4,21 +4,23 @@ Item {
     width: 100
     height: 62
     state: "listShown"
-    function showArticle(articleID, articleText) {
-        state = "articleShown"
-        articleItem.articleText = articleText
+    signal busy()
+    signal finished()
+    function showArticle(articleID, articleText, articleHeader) {
+        state = "articleShown";
     }
 
     ListView {
         id: listViewItem
         anchors.fill: parent
         model: articlesModel
+        clip: true
         delegate: ArticleDelegate {
             width: listViewItem.width
             height: 40
             text:articleTitle
             onArticleSelected: {
-                showArticle(articleID, articleText)
+                showArticle(articleID, articleText, articleTitle)
             }
         }
     }
@@ -26,6 +28,8 @@ Item {
     Article {
         id: articleItem
         anchors.fill: parent
+        onLoadingStarted: busy();
+        onLoadingFinished: finished();
     }
 
     states: [

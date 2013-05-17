@@ -3,9 +3,10 @@
 namespace mlb {
 namespace ui {
 
-ArticleItem::ArticleItem(quint32 articleID, const QString& articleTitle):
+ArticleItem::ArticleItem(quint32 articleID, const QString& articleTitle, const QString& articleText):
     m_articleID(articleID),
-    m_articleTitle(articleTitle)
+    m_articleTitle(articleTitle),
+    m_articleText(articleText)
 {
 }
 
@@ -17,6 +18,11 @@ quint32 ArticleItem::articleID() const
 const QString &ArticleItem::articleTitle() const
 {
     return m_articleTitle;
+}
+
+const QString &ArticleItem::articleText() const
+{
+   return m_articleText;
 }
 
 } // namespace ui
